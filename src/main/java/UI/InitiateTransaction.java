@@ -62,12 +62,14 @@ public class InitiateTransaction {
                 transactionInfo.setSmartContractName("VehicleContract");
                 transactionInfo.setSmartContractMethod("changeOwnership");
                 transactionInfo.setSmartContractSignature("qq");
-                
+                transactionInfo.setData("data");
+                transactionInfo.setSmartContractSignature("qq");
+
 
                 String timeStampStr = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
                 try {
-                    TransactionProposal proposal = new TransactionProposal(KeyGenerator.getInstance().getEncodedPublicKeyString(KeyGenerator.getInstance().getPublicKey()), validators, "data", "proposal-1", timeStampStr, transactionInfo);
+                    TransactionProposal proposal = new TransactionProposal(KeyGenerator.getInstance().getEncodedPublicKeyString(KeyGenerator.getInstance().getPublicKey()), validators, "data", "proposal-2", timeStampStr, transactionInfo);
                     System.out.println(proposal.getTransactionInfo().getEvent());
 
                     proposal.sendProposal();

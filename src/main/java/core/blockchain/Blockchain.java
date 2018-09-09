@@ -1,7 +1,15 @@
 package core.blockchain;
 
+import chainUtil.ChainUtil;
+import chainUtil.KeyGenerator;
 import core.smartContract.Main;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
@@ -51,4 +59,13 @@ public class Blockchain {
         }
         return null;
     }
+
+    public String signChain() throws NoSuchAlgorithmException, IOException, NoSuchProviderException, InvalidKeySpecException,
+            SignatureException, InvalidKeyException {
+
+        String blockchainStrig = ChainUtil.getBlockchainHashString(this);
+        byte[] signedChain = ChainUtil.sign(KeyGenerator.getInstance().getPrivateKey(),blockchainStrig);
+        return ChainUtil.bytesToHex(signedChain);
+    }
+
 }

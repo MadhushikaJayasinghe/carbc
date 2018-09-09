@@ -1,6 +1,8 @@
 package chainUtil;
 
 import core.blockchain.Block;
+import core.blockchain.Blockchain;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
@@ -69,6 +71,11 @@ public class ChainUtil {
     public static String getBlockHashString(Block block) throws NoSuchAlgorithmException {
         JSONObject jsonBlock = new JSONObject(block);
         return bytesToHex(getHash(jsonBlock.toString()));
+    }
+    //should test this method
+    public static String getBlockchainHashString(Blockchain blockchain) throws NoSuchAlgorithmException {
+        JSONArray jsonBlockchain = new JSONArray(blockchain.getBlockchainArray());
+        return bytesToHex(getHash(String.valueOf(jsonBlockchain)));
     }
 
 }

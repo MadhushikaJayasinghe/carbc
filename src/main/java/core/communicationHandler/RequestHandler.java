@@ -69,8 +69,7 @@ public class RequestHandler {
         }
     }
 
-    public void handleTransactionProposalRequest(String data) throws IOException, InvalidKeySpecException,
-            InvalidKeyException, NoSuchAlgorithmException, NoSuchProviderException, SignatureException {
+    public void handleTransactionProposalRequest(String data) throws IOException {
         System.out.println("handleTransactionProposalRequest");
         TransactionProposal proposal = this.JSONToProposal(data);
         System.out.println(proposal.getValidators());
@@ -128,7 +127,7 @@ public class RequestHandler {
         Consensus.getInstance().blockHandler(decodedBLock);
     }
 
-    public Block JSONStringToBlock(String JSONblock) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchProviderException, IOException {
+    public Block JSONStringToBlock(String JSONblock) throws NoSuchAlgorithmException {
 //        byte[] prevhash = ChainUtil.hexStringToByteArray("1234");
 //        byte[] hash = ChainUtil.hexStringToByteArray("5678");
 //        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -154,7 +153,7 @@ public class RequestHandler {
         return block;
     }
 
-    public TransactionProposal JSONToProposal(String data) throws IOException {
+    public TransactionProposal JSONToProposal(String data) {
 
         JSONObject jsonObject = new JSONObject(data);
 
@@ -165,7 +164,7 @@ public class RequestHandler {
         return proposal;
     }
 
-    public TransactionResponse JSONToResponse(String data) throws IOException {
+    public TransactionResponse JSONToResponse(String data) {
         JSONObject jsonObject = new JSONObject(data);
 
         Gson gson = new GsonBuilder().serializeNulls().create();
